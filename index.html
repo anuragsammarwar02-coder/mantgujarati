@@ -1,1140 +1,696 @@
- <!DOCTYPE html>
- <html lang="en">
-
- <head>
-
- <meta charset="UTF-8">
-
- <meta
-     name="viewport"
-     content="width=device-width, initial-scale=1.0"
- >
-
- <meta
-     name="description"
-     content="Join ગુજરાતી Trader for free daily Nifty & BankNifty analysis."
- >
-
- <title>ગુજરાતી Trader \
-
-
- <style>
-
- /* ==============================
-    RESET
- ============================== */
-
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
- }
-
-
- /* ==============================
-    BODY
- ============================== */
-
- body {
-     font-family: Arial, "Segoe UI", sans-serif;
-     background: #f7f9fc;
-     color: #151525;
- }
-
-
- /* ==============================
-    CONTAINER
- ============================== */
-
- .container {
-     width: 100%;
-     max-width: 460px;
-     margin: auto;
-     padding: 35px 16px;
-     text-align: center;
- }
-
-
- /* ==============================
-    ONLINE BAR
- ============================== */
-
- .online {
-     display: inline-flex;
-     align-items: center;
-     gap: 8px;
-
-     background: #e8f5e9;
-     color: #218739;
-
-     padding: 8px 20px;
-
-     border-radius: 30px;
-
-     font-size: 13px;
-     font-weight: bold;
- }
-
- .dot {
-     width: 8px;
-     height: 8px;
-
-     background: #22c55e;
-
-     border-radius: 50%;
-
-     animation: pulse 1.5s infinite;
- }
-
- @keyframes pulse {
-
-     0% {
-         opacity: 1;
-     }
-
-     50% {
-         opacity: 0.4;
-     }
-
-     100% {
-         opacity: 1;
-     }
-
- }
-
-
- /* ==============================
-    PROFILE
- ============================== */
-
- .profile {
-     width: 120px;
-     height: 120px;
-
-     border-radius: 50%;
-
-     margin: 25px auto 10px;
-
-     overflow: hidden;
-
-     border: 4px solid #ffffff;
-
-     box-shadow: 0 5px 20px #dddddd;
- }
-
- .profile img {
-     width: 100%;
-     height: 100%;
-
-     object-fit: cover;
- }
-
-
- /* ==============================
-    TITLE
- ============================== */
-
- h1 {
-     font-size: 23px;
-
-     margin: 12px 0 5px;
-
-     font-weight: 800;
- }
-
- .tag {
-     color: #0066ff;
-
-     font-weight: bold;
-
-     font-size: 14px;
- }
-
-
- /* ==============================
-    RATING
- ============================== */
-
- .rating {
-     margin: 15px;
-
-     color: #ff9800;
-
-     font-size: 18px;
- }
-
- .rating small {
-     color: #777777;
-
-     font-size: 12px;
- }
-
-
- /* ==============================
-    TIMER
- ============================== */
-
- .timer-box {
-     background: #e3f2fd;
-
-     color: #1565c0;
-
-     padding: 12px 20px;
-
-     border-radius: 30px;
-
-     font-size: 14px;
-
-     font-weight: bold;
-
-     margin: 15px 0;
-
-     display: inline-block;
- }
-
- #countdown {
-     font-size: 18px;
-
-     font-weight: 800;
-
-     margin: 0 3px;
- }
-
-
- /* ==============================
-    CTA BUTTON
- ============================== */
-
- .btn {
-     display: block;
-
-     width: 100%;
-
-     background:
-         linear-gradient(
-             135deg,
-             #0066ff,
-             #004dcc
-         );
-
-     color: #ffffff;
-
-     padding: 16px;
-
-     border-radius: 14px;
-
-     text-decoration: none;
-
-     font-weight: bold;
-
-     font-size: 16px;
-
-     margin: 20px 0;
-
-     box-shadow:
-         0 5px 15px #b8d0ff;
-
-     border: none;
-
-     cursor: pointer;
-
-     transition: all 0.2s ease;
- }
-
- .btn:hover {
-     transform: translateY(-1px);
- }
-
- .btn:active {
-     transform: scale(0.98);
- }
-
- .btn.tracking {
-     opacity: 0.85;
- }
-
-
- /* ==============================
-    STATS
- ============================== */
-
- .stats {
-     display: flex;
-
-     gap: 10px;
-
-     margin: 20px 0;
- }
-
- .card {
-     flex: 1;
-
-     background: #ffffff;
-
-     padding: 15px 5px;
-
-     border-radius: 14px;
-
-     box-shadow:
-         0 3px 10px #eeeeee;
-
-     font-size: 13px;
- }
-
- .number {
-     color: #0066ff;
-
-     font-size: 20px;
-
-     font-weight: bold;
-
-     margin-bottom: 3px;
- }
-
-
- /* ==============================
-    CONTENT
- ============================== */
-
- .heading {
-     font-size: 17px;
-
-     font-weight: bold;
-
-     line-height: 1.5;
- }
-
- .heading span {
-     color: #0066ff;
- }
-
- .sub {
-     color: #777777;
-
-     margin: 10px;
-
-     font-size: 13px;
-
-     line-height: 1.5;
- }
-
-
- /* ==============================
-    ALERT
- ============================== */
-
- .alert {
-     background: #fff3e0;
-
-     color: #e65100;
-
-     padding: 12px;
-
-     border-radius: 30px;
-
-     font-size: 13px;
-
-     font-weight: bold;
-
-     margin: 20px 0;
- }
-
-
- /* ==============================
-    FEATURES
- ============================== */
-
- .feature {
-     background: #ffffff;
-
-     padding: 15px;
-
-     margin: 10px 0;
-
-     border-radius: 12px;
-
-     text-align: left;
-
-     display: flex;
-
-     gap: 12px;
-
-     align-items: center;
-
-     box-shadow:
-         0 2px 8px #eeeeee;
-
-     font-size: 14px;
-
-     font-weight: 600;
- }
-
- .icon {
-     font-size: 22px;
-
-     flex-shrink: 0;
- }
-
-
- /* ==============================
-    DISCLAIMER
- ============================== */
-
- .disclaimer {
-     margin-top: 20px;
-
-     font-size: 10px;
-
-     color: #999999;
-
-     line-height: 1.5;
- }
-
-
- /* ==============================
-    ADS
- ============================== */
-
- .ads {
-     margin-top: 35px;
-
-     padding: 18px;
-
-     border-top: 1px solid #dddddd;
-
-     font-size: 13px;
-
-     color: #777777;
- }
-
- .ads a {
-     color: #0066ff;
-
-     font-weight: bold;
-
-     text-decoration: none;
- }
-
-
- /* ==============================
-    MOBILE
- ============================== */
-
- @media (max-width: 360px) {
-
-     .container {
-         padding: 25px 12px;
-     }
-
-     .profile {
-         width: 105px;
-         height: 105px;
-     }
-
-     h1 {
-         font-size: 21px;
-     }
-
-     .stats {
-         gap: 6px;
-     }
-
-     .card {
-         padding: 12px 3px;
-     }
-
- }
-
- </style>
-
- </head>
-
-
- <body>
-
-
- <div class="container">
-
-
-     <!-- ==========================
-          ONLINE
-     =========================== -->
-
-     <div class="online">
-
-         <span class="dot"></span>
-
-         16,947 Traders Online Now
-
-     </div>
-
-
-     <!-- ==========================
-          PROFILE
-     =========================== -->
-
-     <div class="profile">
-
-         <img
-             src="https://growwvix.pro/wp-content/uploads/2026/08/images-2.jpg"
-             alt="ગુજરાતી Trader"
-         >
-
-     </div>
-
-
-     <!-- ==========================
-          TITLE
-     =========================== -->
-
-     <h1>
-         ગુજરાતી Trader
-     </h1>
-
-
-     <div class="tag">
-
-         🏆 Gujarat's No.1 Stock Market Channel
-
-     </div>
-
-
-     <!-- ==========================
-          RATING
-     =========================== -->
-
-     <div class="rating">
-
-         ★★★★★
-
-         <br>
-
-         <small>
-             4.9/5 (2340 Reviews)
-         </small>
-
-     </div>
-
-
-     <!-- ==========================
-          COUNTDOWN
-     =========================== -->
-
-     <div class="timer-box">
-
-         Redirecting to Telegram in
-
-         <span id="countdown">
-             10
-         </span>
-
-         seconds...
-
-     </div>
-
-
-     <!-- ==========================
-          CTA #1
-     =========================== -->
-
-     <a
-         class="btn telegram-cta"
-         href="https://t.me/+7NAbO_qs4-5jNjZl"
-         data-cta="telegram_top"
-         id="joinBtnTop"
-     >
-
-         Join Free Telegram Channel →
-
-     </a>
-
-
-     <!-- ==========================
-          STATS
-     =========================== -->
-
-     <div class="stats">
-
-
-         <div class="card">
-
-             <div class="number">
-                 50K+
-             </div>
-
-             Members
-
-         </div>
-
-
-         <div class="card">
-
-             <div class="number">
-                 5+
-             </div>
-
-             Years
-
-         </div>
-
-
-         <div class="card">
-
-             <div class="number">
-                 95%
-             </div>
-
-             Accuracy
-
-         </div>
-
-
-     </div>
-
-
-     <!-- ==========================
-          MAIN HEADING
-     =========================== -->
-
-     <div class="heading">
-
-         Get
-
-         <span>
-             FREE Daily Calls
-         </span>
-
-         <br>
-
-         for NIFTY, BANKNIFTY &amp; SENSEX
-
-     </div>
-
-
-     <div class="sub">
-
-         Join thousands of traders getting daily market analysis
-
-     </div>
-
-
-     <!-- ==========================
-          ALERT
-     =========================== -->
-
-     <div class="alert">
-
-         🔥 Limited FREE Access Available
-
-     </div>
-
-
-     <!-- ==========================
-          FEATURES
-     =========================== -->
-
-     <div class="feature">
-
-         <div class="icon">
-             📊
-         </div>
-
-         <div>
-             Daily Nifty &amp; BankNifty Levels
-         </div>
-
-     </div>
-
-
-     <div class="feature">
-
-         <div class="icon">
-             🎓
-         </div>
-
-         <div>
-             Educational Market Analysis
-         </div>
-
-     </div>
-
-
-     <div class="feature">
-
-         <div class="icon">
-             👥
-         </div>
-
-         <div>
-             50,000+ Subscribers Community
-         </div>
-
-     </div>
-
-
-     <!-- ==========================
-          CTA #2
-     =========================== -->
-
-     <a
-         class="btn telegram-cta"
-         href="https://t.me/+7NAbO_qs4-5jNjZl"
-         data-cta="telegram_bottom"
-         id="joinBtnBottom"
-     >
-
-         Join Free Telegram Channel →
-
-     </a>
-
-
-     <!-- ==========================
-          DISCLAIMER
-     =========================== -->
-
-     <div class="disclaimer">
-
-         <strong>
-             Disclaimer:
-         </strong>
-
-         <br>
-
-         This channel is for educational purposes only.
-
-         Trading involves market risk.
-
-         Please consult your financial advisor
-         before making investment decisions.
-
-     </div>
-
-
-     <!-- ==========================
-          ADS
-     =========================== -->
-
-     <div class="ads">
-
-         🔥 Ads Managed by
-
-         <br>
-
-         <a href="https://t.me/+G84KwpEa2V0yYTU1">
-
-             <strong>
-                 AK GrowthX Media
-             </strong>
-
-         </a>
-
-     </div>
-
-
- </div>
-
-
-
- <!-- ==================================================
-      META PIXEL
- =================================================== -->
-
- <script>
-
- !function(f,b,e,v,n,t,s)
- {
-
-     if(f.fbq)return;
-
-     n=f.fbq=function()
-     {
-
-         if(n.callMethod) {
-
-             n.callMethod.apply(
-                 n,
-                 arguments
-             );
-
-         } else {
-
-             n.queue.push(arguments);
-
-         }
-
-     };
-
-
-     if(!f._fbq) {
-
-         f._fbq=n;
-
-     }
-
-
-     n.push=n;
-
-     n.loaded=true;
-
-     n.version='2.0';
-
-     n.queue=[];
-
-
-     t=b.createElement(e);
-
-     t.async=true;
-
-     t.src=v;
-
-
-     s=b.getElementsByTagName(e)[0];
-
-     s.parentNode.insertBefore(t,s);
-
- }
-
- (
-     window,
-     document,
-     'script',
-     'https://connect.facebook.net/en_US/fbevents.js'
- );
-
-
- /* Pixel ID */
-
- fbq(
-     'init',
-     '978665568605696'
- );
-
-
- /* Page View */
-
- fbq(
-     'track',
-     'PageView'
- );
-
- </script>
-
-
- <!-- ==================================================
-      META PIXEL NOSCRIPT
- =================================================== -->
-
- <noscript>
-
- <img
-     height="1"
-     width="1"
-     style="display:none"
-     src="https://www.facebook.com/tr?id=978665568605696&ev=PageView&noscript=1"
- />
-
- </noscript>
-
-
-
- <!-- ==================================================
-      TELEGRAM + SUBSCRIBE TRACKING
- =================================================== -->
-
- <script>
-
- (function () {
-
-
-     /*
-      * Telegram URL
-      */
-
-     const telegramLink =
-         "https://t.me/+7NAbO_qs4-5jNjZl";
-
-
-     /*
-      * Countdown
-      */
-
-     let timeLeft = 10;
-
-
-     /*
-      * Countdown element
-      */
-
-     const countdownEl =
-         document.getElementById(
-             "countdown"
-         );
-
-
-     /*
-      * Prevent duplicate tracking
-      */
-
-     let tracked = false;
-
-
-     /*
-      * ==========================================
-      * TRACK SUBSCRIBE
-      * ==========================================
-      */
-
-     function trackSubscribe(source) {
-
-
-         /*
-          * Don't fire twice
-          */
-
-         if (tracked) {
-
-             return;
-
-         }
-
-
-         tracked = true;
-
-
-         /*
-          * Meta Pixel available?
-          */
-
-         if (
-             typeof fbq === "function"
-         ) {
-
-
-             /*
-              * Custom Subscribe Event
-              */
-
-             fbq(
-                 "trackCustom",
-                 "Subscribe_Click",
-                 {
-
-                     platform:
-                         "Telegram",
-
-                     source:
-                         source,
-
-                     content_name:
-                         "Gujarati Trader Telegram",
-
-                     content_category:
-                         "Telegram Channel"
-
-                 }
-             );
-
-
-             /*
-              * Standard Lead Event
-              */
-
-             fbq(
-                 "track",
-                 "Lead",
-                 {
-
-                     content_name:
-                         "Gujarati Trader Telegram",
-
-                     content_category:
-                         "Telegram Subscribe"
-
-                 }
-             );
-
-         }
-
-
-         /*
-          * Save click information
-          */
-
-         try {
-
-             localStorage.setItem(
-                 "telegram_cta_clicked",
-                 "true"
-             );
-
-
-             localStorage.setItem(
-                 "telegram_cta_time",
-                 Date.now().toString()
-             );
-
-
-             localStorage.setItem(
-                 "telegram_cta_source",
-                 source
-             );
-
-         }
-
-         catch (error) {
-
-             console.log(
-                 "LocalStorage unavailable"
-             );
-
-         }
-
-     }
-
-
-
-     /*
-      * ==========================================
-      * CTA BUTTON TRACKING
-      * ==========================================
-      */
-
-     const buttons =
-         document.querySelectorAll(
-             ".telegram-cta"
-         );
-
-
-     buttons.forEach(
-         function(button) {
-
-
-             button.addEventListener(
-                 "click",
-                 function() {
-
-
-                     /*
-                      * Track CTA
-                      */
-
-                     trackSubscribe(
-                         button.getAttribute(
-                             "data-cta"
-                         ) \
-                     );
-
-
-                     /*
-                      * Button feedback
-                      */
-
-                     button.classList.add(
-                         "tracking"
-                     );
-
-
-                     button.innerHTML =
-                         "Opening Telegram...";
-
-
-                 }
-             );
-
-         }
-     );
-
-
-
-     /*
-      * ==========================================
-      * 10 SECOND COUNTDOWN
-      * ==========================================
-      */
-
-     const timer =
-         setInterval(
-             function() {
-
-
-                 timeLeft--;
-
-
-                 /*
-                  * Update timer
-                  */
-
-                 if (countdownEl) {
-
-                     countdownEl.textContent =
-                         timeLeft;
-
-                 }
-
-
-                 /*
-                  * =================================
-                  * TIMER FINISHED
-                  * =================================
-                  */
-
-                 if (timeLeft <= 0) {
-
-
-                     clearInterval(
-                         timer
-                     );
-
-
-                     /*
-                      * Show zero
-                      */
-
-                     if (countdownEl) {
-
-                         countdownEl.textContent =
-                             "0";
-
-                     }
-
-
-                     /*
-                      * Track auto redirect
-                      */
-
-                     trackSubscribe(
-                         "auto_redirect"
-                     );
-
-
-                     /*
-                      * Small delay allows
-                      * Pixel event to start
-                      */
-
-                     setTimeout(
-                         function() {
-
-                             window.location.href =
-                                 telegramLink;
-
-                         },
-                         150
-                     );
-
-                 }
-
-
-             },
-             1000
-         );
-
-
- })();
-
- </script>
-
-
- </body>
-
- </html>
+ <!DOCTYPE html>                                                                                                                               
+ <html lang="en">                                                                                                                              
+ <head>                                                                                                                                        
+ <meta charset="UTF-8">                                                                                                                        
+ <meta                                                                                                                                         
+     name="viewport"                                                                                                                            
+     content="width=device-width, initial-scale=1.0"                                                                                            
+ >                                                                                                                                              
+ <meta                                                                                                                                         
+     name="description"                                                                                                                         
+     content="Join ગુજરાતી Trader for free daily Nifty & BankNifty analysis."                                                                   
+ >                                                                                                                                              
+ <title>ગુજરાતી Trader | Free Telegram Channel</title>                                                                                       
+ <style>                                                                                                                                       
+ /* ==============================                                                                                                             
+    RESET                                                                                                                                       
+ ============================== */                                                                                                             
+ * {                                                                                                                                           
+     margin: 0;                                                                                                                                 
+     padding: 0;                                                                                                                                
+     box-sizing: border-box;                                                                                                                    
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    BODY                                                                                                                                        
+ ============================== */                                                                                                             
+ body {                                                                                                                                         
+     font-family: Arial, "Segoe UI", sans-serif;                                                                                                
+     background: #f7f9fc;                                                                                                                       
+     color: #151525;                                                                                                                            
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    CONTAINER                                                                                                                                   
+ ============================== */                                                                                                             
+ .container {                                                                                                                                   
+     width: 100%;                                                                                                                               
+     max-width: 460px;                                                                                                                          
+     margin: auto;                                                                                                                              
+     padding: 35px 16px;                                                                                                                        
+     text-align: center;                                                                                                                        
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    ONLINE BAR                                                                                                                                  
+ ============================== */                                                                                                             
+ .online {                                                                                                                                      
+     display: inline-flex;                                                                                                                      
+     align-items: center;                                                                                                                       
+     gap: 8px;                                                                                                                                  
+     background: #e8f5e9;                                                                                                                       
+     color: #218739;                                                                                                                            
+     padding: 8px 20px;                                                                                                                         
+     border-radius: 30px;                                                                                                                       
+     font-size: 13px;                                                                                                                           
+     font-weight: bold;                                                                                                                         
+ }                                                                                                                                              
+ .dot {                                                                                                                                         
+     width: 8px;                                                                                                                                
+     height: 8px;                                                                                                                               
+     background: #22c55e;                                                                                                                       
+     border-radius: 50%;                                                                                                                        
+     animation: pulse 1.5s infinite;                                                                                                            
+ }                                                                                                                                              
+ @keyframes pulse {                                                                                                                             
+     0% {                                                                                                                                       
+         opacity: 1;                                                                                                                            
+     }                                                                                                                                          
+     50% {                                                                                                                                      
+         opacity: 0.4;                                                                                                                          
+     }                                                                                                                                          
+     100% {                                                                                                                                     
+         opacity: 1;                                                                                                                            
+     }                                                                                                                                          
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    PROFILE                                                                                                                                     
+ ============================== */                                                                                                             
+ .profile {                                                                                                                                     
+     width: 120px;                                                                                                                              
+     height: 120px;                                                                                                                             
+     border-radius: 50%;                                                                                                                        
+     margin: 25px auto 10px;                                                                                                                    
+     overflow: hidden;                                                                                                                          
+     border: 4px solid #ffffff;                                                                                                                 
+     box-shadow: 0 5px 20px #dddddd;                                                                                                            
+ }                                                                                                                                              
+ .profile img {                                                                                                                                 
+     width: 100%;                                                                                                                               
+     height: 100%;                                                                                                                              
+     object-fit: cover;                                                                                                                         
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    TITLE                                                                                                                                       
+ ============================== */                                                                                                             
+ h1 {                                                                                                                                           
+     font-size: 23px;                                                                                                                           
+     margin: 12px 0 5px;                                                                                                                        
+     font-weight: 800;                                                                                                                          
+ }                                                                                                                                              
+ .tag {                                                                                                                                         
+     color: #0066ff;                                                                                                                            
+     font-weight: bold;                                                                                                                         
+     font-size: 14px;                                                                                                                           
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    RATING                                                                                                                                      
+ ============================== */                                                                                                             
+ .rating {                                                                                                                                      
+     margin: 15px;                                                                                                                              
+     color: #ff9800;                                                                                                                            
+     font-size: 18px;                                                                                                                           
+ }                                                                                                                                              
+ .rating small {                                                                                                                                
+     color: #777777;                                                                                                                            
+     font-size: 12px;                                                                                                                           
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    TIMER                                                                                                                                       
+ ============================== */                                                                                                             
+ .timer-box {                                                                                                                                   
+     background: #e3f2fd;                                                                                                                       
+     color: #1565c0;                                                                                                                            
+     padding: 12px 20px;                                                                                                                        
+     border-radius: 30px;                                                                                                                       
+     font-size: 14px;                                                                                                                           
+     font-weight: bold;                                                                                                                         
+     margin: 15px 0;                                                                                                                            
+     display: inline-block;                                                                                                                     
+ }                                                                                                                                              
+ #countdown {                                                                                                                                   
+     font-size: 18px;                                                                                                                           
+     font-weight: 800;                                                                                                                          
+     margin: 0 3px;                                                                                                                             
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    CTA BUTTON                                                                                                                                  
+ ============================== */                                                                                                             
+ .btn {                                                                                                                                         
+     display: block;                                                                                                                            
+     width: 100%;                                                                                                                               
+     background:                                                                                                                                
+         linear-gradient(                                                                                                                       
+             135deg,                                                                                                                            
+             #0066ff,                                                                                                                           
+             #004dcc                                                                                                                            
+         );                                                                                                                                     
+     color: #ffffff;                                                                                                                            
+     padding: 16px;                                                                                                                             
+     border-radius: 14px;                                                                                                                       
+     text-decoration: none;                                                                                                                     
+     font-weight: bold;                                                                                                                         
+     font-size: 16px;                                                                                                                           
+     margin: 20px 0;                                                                                                                            
+     box-shadow:                                                                                                                                
+         0 5px 15px #b8d0ff;                                                                                                                    
+     border: none;                                                                                                                              
+     cursor: pointer;                                                                                                                           
+     transition: all 0.2s ease;                                                                                                                 
+ }                                                                                                                                              
+ .btn:hover {                                                                                                                                  
+     transform: translateY(-1px);                                                                                                               
+ }                                                                                                                                              
+ .btn:active {                                                                                                                                 
+     transform: scale(0.98);                                                                                                                    
+ }                                                                                                                                              
+ .btn.tracking {                                                                                                                                
+     opacity: 0.85;                                                                                                                             
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    STATS                                                                                                                                       
+ ============================== */                                                                                                             
+ .stats {                                                                                                                                       
+     display: flex;                                                                                                                             
+     gap: 10px;                                                                                                                                 
+     margin: 20px 0;                                                                                                                            
+ }                                                                                                                                              
+ .card {                                                                                                                                        
+     flex: 1;                                                                                                                                   
+     background: #ffffff;                                                                                                                       
+     padding: 15px 5px;                                                                                                                         
+     border-radius: 14px;                                                                                                                       
+     box-shadow:                                                                                                                                
+         0 3px 10px #eeeeee;                                                                                                                    
+     font-size: 13px;                                                                                                                           
+ }                                                                                                                                              
+ .number {                                                                                                                                      
+     color: #0066ff;                                                                                                                            
+     font-size: 20px;                                                                                                                           
+     font-weight: bold;                                                                                                                         
+     margin-bottom: 3px;                                                                                                                        
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    CONTENT                                                                                                                                     
+ ============================== */                                                                                                             
+ .heading {                                                                                                                                     
+     font-size: 17px;                                                                                                                           
+     font-weight: bold;                                                                                                                         
+     line-height: 1.5;                                                                                                                          
+ }                                                                                                                                              
+ .heading span {                                                                                                                                
+     color: #0066ff;                                                                                                                            
+ }                                                                                                                                              
+ .sub {                                                                                                                                         
+     color: #777777;                                                                                                                            
+     margin: 10px;                                                                                                                              
+     font-size: 13px;                                                                                                                           
+     line-height: 1.5;                                                                                                                          
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    ALERT                                                                                                                                       
+ ============================== */                                                                                                             
+ .alert {                                                                                                                                       
+     background: #fff3e0;                                                                                                                       
+     color: #e65100;                                                                                                                            
+     padding: 12px;                                                                                                                             
+     border-radius: 30px;                                                                                                                       
+     font-size: 13px;                                                                                                                           
+     font-weight: bold;                                                                                                                         
+     margin: 20px 0;                                                                                                                            
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    FEATURES                                                                                                                                    
+ ============================== */                                                                                                             
+ .feature {                                                                                                                                     
+     background: #ffffff;                                                                                                                       
+     padding: 15px;                                                                                                                             
+     margin: 10px 0;                                                                                                                            
+     border-radius: 12px;                                                                                                                       
+     text-align: left;                                                                                                                          
+     display: flex;                                                                                                                             
+     gap: 12px;                                                                                                                                 
+     align-items: center;                                                                                                                       
+     box-shadow:                                                                                                                                
+         0 2px 8px #eeeeee;                                                                                                                     
+     font-size: 14px;                                                                                                                           
+     font-weight: 600;                                                                                                                          
+ }                                                                                                                                              
+ .icon {                                                                                                                                        
+     font-size: 22px;                                                                                                                           
+     flex-shrink: 0;                                                                                                                            
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    DISCLAIMER                                                                                                                                  
+ ============================== */                                                                                                             
+ .disclaimer {                                                                                                                                  
+     margin-top: 20px;                                                                                                                          
+     font-size: 10px;                                                                                                                           
+     color: #999999;                                                                                                                            
+     line-height: 1.5;                                                                                                                          
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    ADS                                                                                                                                         
+ ============================== */                                                                                                             
+ .ads {                                                                                                                                         
+     margin-top: 35px;                                                                                                                          
+     padding: 18px;                                                                                                                             
+     border-top: 1px solid #dddddd;                                                                                                             
+     font-size: 13px;                                                                                                                           
+     color: #777777;                                                                                                                            
+ }                                                                                                                                              
+ .ads a {                                                                                                                                       
+     color: #0066ff;                                                                                                                            
+     font-weight: bold;                                                                                                                         
+     text-decoration: none;                                                                                                                     
+ }                                                                                                                                              
+ /* ==============================                                                                                                             
+    MOBILE                                                                                                                                      
+ ============================== */                                                                                                             
+ @media (max-width: 360px) {                                                                                                                    
+     .container {                                                                                                                               
+         padding: 25px 12px;                                                                                                                    
+     }                                                                                                                                          
+     .profile {                                                                                                                                 
+         width: 105px;                                                                                                                          
+         height: 105px;                                                                                                                         
+     }                                                                                                                                          
+     h1 {                                                                                                                                       
+         font-size: 21px;                                                                                                                       
+     }                                                                                                                                          
+     .stats {                                                                                                                                   
+         gap: 6px;                                                                                                                              
+     }                                                                                                                                          
+     .card {                                                                                                                                    
+         padding: 12px 3px;                                                                                                                     
+     }                                                                                                                                          
+ }                                                                                                                                              
+ </style>                                                                                                                                      
+ </head>                                                                                                                                       
+ <body>                                                                                                                                        
+ <div class="container">                                                                                                                       
+     <!-- ==========================                                                                                                           
+          ONLINE                                                                                                                                
+     =========================== -->                                                                                                            
+     <div class="online">                                                                                                                      
+         <span class="dot"></span>                                                                                                            
+         16,947 Traders Online Now                                                                                                              
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          PROFILE                                                                                                                               
+     =========================== -->                                                                                                            
+     <div class="profile">                                                                                                                     
+         <img                                                                                                                                  
+             src="https://growwvix.pro/wp-content/uploads/2026/08/images-2.jpg" 
+             alt="ગુજરાતી Trader"                                                                                                               
+         >                                                                                                                                      
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          TITLE                                                                                                                                 
+     =========================== -->                                                                                                            
+     <h1>                                                                                                                                      
+         ગુજરાતી Trader                                                                                                                         
+     </h1>                                                                                                                                     
+     <div class="tag">                                                                                                                         
+         🏆 Gujarat's No.1 Stock Market Channel                                                                                                 
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          RATING                                                                                                                                
+     =========================== -->                                                                                                            
+     <div class="rating">                                                                                                                      
+         ★★★★★                                                                                                                                  
+         <small>                                                                                                                               
+             4.9/5 (2340 Reviews)                                                                                                               
+         </small>                                                                                                                              
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          COUNTDOWN                                                                                                                             
+     =========================== -->                                                                                                            
+     <div class="timer-box">                                                                                                                   
+         Redirecting to Telegram in                                                                                                             
+         <span id="countdown">                                                                                                                 
+             10                                                                                                                                 
+         </span>                                                                                                                               
+         seconds...                                                                                                                             
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          CTA #1                                                                                                                                
+     =========================== -->                                                                                                            
+     <a                                                                                                                                        
+         class="btn telegram-cta"                                                                                                               
+         href="https://t.me/+7NAbO_qs4-5jNjZl"                                                                
+         data-cta="telegram_top"                                                                                                                
+         id="joinBtnTop"                                                                                                                        
+     >                                                                                                                                          
+         Join Free Telegram Channel →                                                                                                           
+     </a>                                                                                                                                      
+     <!-- ==========================                                                                                                           
+          STATS                                                                                                                                 
+     =========================== -->                                                                                                            
+     <div class="stats">                                                                                                                       
+         <div class="card">                                                                                                                    
+             <div class="number">                                                                                                              
+                 50K+                                                                                                                           
+             </div>                                                                                                                            
+             Members                                                                                                                            
+         </div>                                                                                                                                
+         <div class="card">                                                                                                                    
+             <div class="number">                                                                                                              
+                 5+                                                                                                                             
+             </div>                                                                                                                            
+             Years                                                                                                                              
+         </div>                                                                                                                                
+         <div class="card">                                                                                                                    
+             <div class="number">                                                                                                              
+                 95%                                                                                                                            
+             </div>                                                                                                                            
+             Accuracy                                                                                                                           
+         </div>                                                                                                                                
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          MAIN HEADING                                                                                                                          
+     =========================== -->                                                                                                            
+     <div class="heading">                                                                                                                     
+         Get                                                                                                                                    
+         <span>                                                                                                                                
+             FREE Daily Calls                                                                                                                   
+         </span>                                                                                                                               
+         for NIFTY, BANKNIFTY &amp; SENSEX                                                                                                      
+     </div>                                                                                                                                    
+     <div class="sub">                                                                                                                         
+         Join thousands of traders getting daily market analysis                                                                                
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          ALERT                                                                                                                                 
+     =========================== -->                                                                                                            
+     <div class="alert">                                                                                                                       
+         🔥 Limited FREE Access Available                                                                                                       
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          FEATURES                                                                                                                              
+     =========================== -->                                                                                                            
+     <div class="feature">                                                                                                                     
+         <div class="icon">                                                                                                                    
+             📊                                                                                                                                 
+         </div>                                                                                                                                
+         <div>                                                                                                                                 
+             Daily Nifty &amp; BankNifty Levels                                                                                                 
+         </div>                                                                                                                                
+     </div>                                                                                                                                    
+     <div class="feature">                                                                                                                     
+         <div class="icon">                                                                                                                    
+             🎓                                                                                                                                 
+         </div>                                                                                                                                
+         <div>                                                                                                                                 
+             Educational Market Analysis                                                                                                        
+         </div>                                                                                                                                
+     </div>                                                                                                                                    
+     <div class="feature">                                                                                                                     
+         <div class="icon">                                                                                                                    
+             👥                                                                                                                                 
+         </div>                                                                                                                                
+         <div>                                                                                                                                 
+             50,000+ Subscribers Community                                                                                                      
+         </div>                                                                                                                                
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          CTA #2                                                                                                                                
+     =========================== -->                                                                                                            
+     <a                                                                                                                                        
+         class="btn telegram-cta"                                                                                                               
+         href="https://t.me/+7NAbO_qs4-5jNjZl"                                                                
+         data-cta="telegram_bottom"                                                                                                             
+         id="joinBtnBottom"                                                                                                                     
+     >                                                                                                                                          
+         Join Free Telegram Channel →                                                                                                           
+     </a>                                                                                                                                      
+     <!-- ==========================                                                                                                           
+          DISCLAIMER                                                                                                                            
+     =========================== -->                                                                                                            
+     <div class="disclaimer">                                                                                                                  
+         <strong>                                                                                                                              
+             Disclaimer:                                                                                                                        
+         </strong>                                                                                                                             
+         This channel is for educational purposes only.                                                                                         
+         Trading involves market risk.                                                                                                          
+         Please consult your financial advisor                                                                                                  
+         before making investment decisions.                                                                                                    
+     </div>                                                                                                                                    
+     <!-- ==========================                                                                                                           
+          ADS                                                                                                                                   
+     =========================== -->                                                                                                            
+     <div class="ads">                                                                                                                         
+         🔥 Ads Managed by                                                                                                                      
+         <a href="https://t.me/+G84KwpEa2V0yYTU1">                                                           
+             <strong>                                                                                                                          
+                 AK GrowthX Media                                                                                                               
+             </strong>                                                                                                                         
+         </a>                                                                                                                                  
+     </div>                                                                                                                                    
+ </div>                                                                                                                                        
+ <!-- ==================================================                                                                                       
+      META PIXEL                                                                                                                                
+ =================================================== -->                                                                                        
+ <script>                                                                                                                                      
+ !function(f,b,e,v,n,t,s)                                                                                                                       
+ {                                                                                                                                              
+     if(f.fbq)return;                                                                                                                           
+     n=f.fbq=function()                                                                                                                         
+     {                                                                                                                                          
+         if(n.callMethod) {                                                                                                                     
+             n.callMethod.apply(                                                                                                                
+                 n,                                                                                                                             
+                 arguments                                                                                                                      
+             );                                                                                                                                 
+         } else {                                                                                                                               
+             n.queue.push(arguments);                                                                                                           
+         }                                                                                                                                      
+     };                                                                                                                                         
+     if(!f._fbq) {                                                                                                                             
+         f._fbq=n;                                                                                                                             
+     }                                                                                                                                          
+     n.push=n;                                                                                                                                  
+     n.loaded=true;                                                                                                                             
+     n.version='2.0';                                                                                                                           
+     n.queue=[];                                                                                                                                
+     t=b.createElement(e);                                                                                                                      
+     t.async=true;                                                                                                                              
+     t.src=v;                                                                                                                                   
+     s=b.getElementsByTagName(e)[0];                                                                                                            
+     s.parentNode.insertBefore(t,s);                                                                                                            
+ }                                                                                                                                              
+ (                                                                                                                                              
+     window,                                                                                                                                    
+     document,                                                                                                                                  
+     'script',                                                                                                                                  
+     'https://connect.facebook.net/en_US/fbevents.js'                                                                                          
+ );                                                                                                                                             
+ /* Pixel ID */                                                                                                                               
+ fbq(                                                                                                                                           
+     'init',                                                                                                                                    
+     '978665568605696'                                                                                                                         
+ );                                                                                                                                             
+ /* Page View */                                                                                                                              
+ fbq(                                                                                                                                           
+     'track',                                                                                                                                   
+     'PageView'                                                                                                                                 
+ );                                                                                                                                             
+ </script>                                                                                                                                     
+ <!-- ==================================================                                                                                       
+      META PIXEL NOSCRIPT                                                                                                                       
+ =================================================== -->                                                                                        
+ <noscript>                                                                                                                                    
+ <img                                                                                                                                          
+     height="1"                                                                                                                                 
+     width="1"                                                                                                                                  
+     style="display:none"                                                                                                                      
+     src="https://www.facebook.com/tr?id=978665568605696&ev=PageView&noscript=1"                                                             
+ />                                                                                                                                             
+ </noscript>                                                                                                                                   
+ <!-- ==================================================                                                                                       
+      TELEGRAM + SUBSCRIBE TRACKING                                                                                                             
+ =================================================== -->                                                                                        
+ <script>                                                                                                                                      
+ (function () {                                                                                                                                 
+     /*                                                                                                                                        
+      * Telegram URL                                                                                                                           
+      */                                                                                                                                       
+     const telegramLink =                                                                                                                       
+         "https://t.me/+7NAbO_qs4-5jNjZl";                                                                                                     
+     /*                                                                                                                                        
+      * Countdown                                                                                                                              
+      */                                                                                                                                       
+     let timeLeft = 10;                                                                                                                         
+     /*                                                                                                                                        
+      * Countdown element                                                                                                                      
+      */                                                                                                                                       
+     const countdownEl =                                                                                                                        
+         document.getElementById(                                                                                                               
+             "countdown"                                                                                                                        
+         );                                                                                                                                     
+     /*                                                                                                                                        
+      * Prevent duplicate tracking                                                                                                             
+      */                                                                                                                                       
+     let tracked = false;                                                                                                                       
+     /*                                                                                                                                        
+      * ==========================================                                                                                             
+      * TRACK SUBSCRIBE                                                                                                                        
+      * ==========================================                                                                                             
+      */                                                                                                                                       
+     function trackSubscribe(source) {                                                                                                          
+         /*                                                                                                                                    
+          * Don't fire twice                                                                                                                   
+          */                                                                                                                                   
+         if (tracked) {                                                                                                                         
+             return;                                                                                                                            
+         }                                                                                                                                      
+         tracked = true;                                                                                                                        
+         /*                                                                                                                                    
+          * Meta Pixel available?                                                                                                              
+          */                                                                                                                                   
+         if (                                                                                                                                   
+             typeof fbq === "function"                                                                                                          
+         ) {                                                                                                                                    
+             /*                                                                                                                                
+              * Custom Subscribe Event                                                                                                         
+              */                                                                                                                               
+             fbq(                                                                                                                               
+                 "trackCustom",                                                                                                                 
+                 "Subscribe_Click",                                                                                                             
+                 {                                                                                                                              
+                     platform:                                                                                                                  
+                         "Telegram",                                                                                                            
+                     source:                                                                                                                    
+                         source,                                                                                                                
+                     content_name:                                                                                                              
+                         "Gujarati Trader Telegram",                                                                                            
+                     content_category:                                                                                                          
+                         "Telegram Channel"                                                                                                     
+                 }                                                                                                                              
+             );                                                                                                                                 
+             /*                                                                                                                                
+              * Standard Lead Event                                                                                                            
+              */                                                                                                                               
+             fbq(                                                                                                                               
+                 "track",                                                                                                                       
+                 "Lead",                                                                                                                        
+                 {                                                                                                                              
+                     content_name:                                                                                                              
+                         "Gujarati Trader Telegram",                                                                                            
+                     content_category:                                                                                                          
+                         "Telegram Subscribe"                                                                                                   
+                 }                                                                                                                              
+             );                                                                                                                                 
+         }                                                                                                                                      
+         /*                                                                                                                                    
+          * Save click information                                                                                                             
+          */                                                                                                                                   
+         try {                                                                                                                                  
+             localStorage.setItem(                                                                                                              
+                 "telegram_cta_clicked",                                                                                                        
+                 "true"                                                                                                                         
+             );                                                                                                                                 
+             localStorage.setItem(                                                                                                              
+                 "telegram_cta_time",                                                                                                           
+                 Date.now().toString()                                                                                                          
+             );                                                                                                                                 
+             localStorage.setItem(                                                                                                              
+                 "telegram_cta_source",                                                                                                         
+                 source                                                                                                                         
+             );                                                                                                                                 
+         }                                                                                                                                      
+         catch (error) {                                                                                                                        
+             console.log(                                                                                                                       
+                 "LocalStorage unavailable"                                                                                                     
+             );                                                                                                                                 
+         }                                                                                                                                      
+     }                                                                                                                                          
+     /*                                                                                                                                        
+      * ==========================================                                                                                             
+      * CTA BUTTON TRACKING                                                                                                                    
+      * ==========================================                                                                                             
+      */                                                                                                                                       
+     const buttons =                                                                                                                            
+         document.querySelectorAll(                                                                                                             
+             ".telegram-cta"                                                                                                                    
+         );                                                                                                                                     
+     buttons.forEach(                                                                                                                           
+         function(button) {                                                                                                                     
+             button.addEventListener(                                                                                                           
+                 "click",                                                                                                                       
+                 function() {                                                                                                                   
+                     /*                                                                                                                        
+                      * Track CTA                                                                                                              
+                      */                                                                                                                       
+                     trackSubscribe(                                                                                                            
+                         button.getAttribute(                                                                                                   
+                             "data-cta"                                                                                                         
+                         ) || "cta_click"                                                                                                     
+                     );                                                                                                                         
+                     /*                                                                                                                        
+                      * Button feedback                                                                                                        
+                      */                                                                                                                       
+                     button.classList.add(                                                                                                      
+                         "tracking"                                                                                                             
+                     );                                                                                                                         
+                     button.innerHTML =                                                                                                         
+                         "Opening Telegram...";                                                                                                 
+                 }                                                                                                                              
+             );                                                                                                                                 
+         }                                                                                                                                      
+     );                                                                                                                                         
+     /*                                                                                                                                        
+      * ==========================================                                                                                             
+      * 10 SECOND COUNTDOWN                                                                                                                    
+      * ==========================================                                                                                             
+      */                                                                                                                                       
+     const timer =                                                                                                                              
+         setInterval(                                                                                                                           
+             function() {                                                                                                                       
+                 timeLeft--;                                                                                                                    
+                 /*                                                                                                                            
+                  * Update timer                                                                                                               
+                  */                                                                                                                           
+                 if (countdownEl) {                                                                                                             
+                     countdownEl.textContent =                                                                                                  
+                         timeLeft;                                                                                                              
+                 }                                                                                                                              
+                 /*                                                                                                                            
+                  * =================================                                                                                          
+                  * TIMER FINISHED                                                                                                             
+                  * =================================                                                                                          
+                  */                                                                                                                           
+                 if (timeLeft <= 0) {                                                                                                           
+                     clearInterval(                                                                                                             
+                         timer                                                                                                                  
+                     );                                                                                                                         
+                     /*                                                                                                                        
+                      * Show zero                                                                                                              
+                      */                                                                                                                       
+                     if (countdownEl) {                                                                                                         
+                         countdownEl.textContent =                                                                                              
+                             "0";                                                                                                               
+                     }                                                                                                                          
+                     /*                                                                                                                        
+                      * Track auto redirect                                                                                                    
+                      */                                                                                                                       
+                     trackSubscribe(                                                                                                            
+                         "auto_redirect"                                                                                                        
+                     );                                                                                                                         
+                     /*                                                                                                                        
+                      * Small delay allows                                                                                                     
+                      * Pixel event to start                                                                                                   
+                      */                                                                                                                       
+                     setTimeout(                                                                                                                
+                         function() {                                                                                                           
+                             window.location.href =                                                                                            
+                                 telegramLink;                                                                                                  
+                         },                                                                                                                     
+                         150                                                                                                                    
+                     );                                                                                                                         
+                 }                                                                                                                              
+             },                                                                                                                                 
+             1000                                                                                                                               
+         );                                                                                                                                     
+ })();                                                                                                                                          
+ </script>                                                                                                                                     
+ </body>                                                                                                                                       
+ </html>                                                                                                                                       
+                                                                                                                                                
